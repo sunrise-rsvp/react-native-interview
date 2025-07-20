@@ -1,0 +1,36 @@
+{
+  "name": "@sunrise-ui/primitives",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "format": "prettier --write src",
+    "lint": "tsc && eslint . --ext .ts,.tsx",
+    "lint:fix": "tsc && eslint . --ext .ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "*"
+  },
+  "peerDependencies": {
+    "@hookform/resolvers": "*",
+    "@hugeicons/core-free-icons": "*",
+    "@hugeicons/react-native": "*",
+    "@react-navigation/core": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/native-stack": "*",
+    "expo-camera": "*",
+    "expo-font": "*",
+    "expo-image-manipulator": "*",
+    "expo-image-picker": "*",
+    "expo-router": "*",
+    "expo-web-browser": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-hook-form": "*",
+    "react-native": "*",
+    "react-native-paper": "*",
+    "react-native-safe-area-context": "*",
+    "react-responsive": "*",
+    "yup": "*"
+  }
+}

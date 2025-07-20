@@ -1,0 +1,30 @@
+# General Code Style & Formatting
+- Use functional and declarative programming patterns; avoid classes.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Follow Expo's official documentation for setting up and configuring projects.
+- Favor named exports. Do not use default exports.
+- Use Prettier for consistent code formatting.
+
+# React Native
+- Use separate stylesheet in the same file as the component. Do not use inline styles.
+- Define component props types as a type named Props inside the same file as the component.
+- Use our primitive components such as Modal, Loader, StyledText, Button from the primitives package. Otherwise use react-native-paper for UI components.
+- Follow the principles of atomic design for component organization.
+
+# Javascript
+- Prefer object destructuring as early as possible
+
+# TypeScript
+- Use TypeScript for all code
+- Avoid any; use explicit types instead.
+- Use functional components with TypeScript types.
+- Enable strict mode in TypeScript for better type safety.
+
+# Monorepo
+- Use pnpm monorepo
+- For packages, use index files for exports, but within the package, use named exports.
+- Do not modify the api package
+- The api-client package is the only package that can import from the api package
+- The primitive package can only import from the api-client package
+- The composite package can import from the primitive package and the api-client package
+- Follow the README.md file guides for creating apps and packages

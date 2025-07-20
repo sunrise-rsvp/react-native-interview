@@ -1,0 +1,29 @@
+{
+  "name": "@sunrise-ui/composites",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "format": "prettier --write src",
+    "lint": "tsc && eslint . --ext .ts,.tsx",
+    "lint:fix": "tsc && eslint . --ext .ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@sunrise-ui/api": "workspace:*",
+    "@sunrise-ui/api-client": "workspace:*",
+    "@sunrise-ui/primitives": "workspace:*"
+  },
+  "peerDependencies": {
+    "@hookform/resolvers": "*",
+    "@hugeicons/core-free-icons": "*",
+    "@hugeicons/react-native": "*",
+    "expo": "*",
+    "expo-router": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-hook-form": "*",
+    "react-native": "*",
+    "react-native-paper": "*",
+    "yup": "*"
+  }
+}

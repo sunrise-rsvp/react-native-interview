@@ -1,0 +1,17 @@
+{
+  "name": "@sunrise-ui/api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "gen:all": "pnpm run gen:cerebro && pnpm run gen:events && pnpm run gen:messenger && pnpm run gen:network && pnpm run gen:profiles",
+    "gen:cerebro": "sudo openapi-generator-cli generate -i https://cerebro.srs-dev.com/openapi.json -g typescript-axios -o cerebro/ --additional-properties=useSingleRequestParameter=true",
+    "gen:events": "sudo openapi-generator-cli generate -i https://events.srs-dev.com/openapi.json -g typescript-axios -o events/ --additional-properties=useSingleRequestParameter=true",
+    "gen:gamification": "sudo openapi-generator-cli generate -i https://gamification.srs-dev.com/openapi.json -g typescript-axios -o gamification/ --additional-properties=useSingleRequestParameter=true",
+    "gen:messenger": "sudo openapi-generator-cli generate -i https://messenger.srs-dev.com/openapi.json -g typescript-axios -o messenger/ --additional-properties=useSingleRequestParameter=true",
+    "gen:network": "sudo openapi-generator-cli generate -i https://network.srs-dev.com/openapi.json -g typescript-axios -o network/ --additional-properties=useSingleRequestParameter=true",
+    "gen:profiles": "sudo openapi-generator-cli generate -i https://profiles.srs-dev.com/openapi.json -g typescript-axios -o profile/ --additional-properties=useSingleRequestParameter=true"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "*"
+  }
+}

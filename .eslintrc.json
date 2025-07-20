@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "capitalized-comments": "off",
+    "no-warning-comments": "off",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "complexity": "off",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "sunrise/no-nested-package-imports": "error",
+    "sunrise/no-missing-dependencies": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["**/index"]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "expo-env.d.ts",
+    "metro.config.js",
+    "**/lib/**",
+    "**/node_modules/**"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "sunrise"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "root": true
+}

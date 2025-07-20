@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "appVersionSource": "remote",
+    "version": ">=12.4.1"
+  },
+  "build": {
+    "development": {
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "image": "sdk-52"
+      },
+      "ios": {
+        "buildConfiguration": "Debug",
+        "image": "sdk-52"
+      },
+      "env": {
+        "EXPO_PUBLIC_CEREBRO_BASE_URL": "https://cerebro.srs-dev.com",
+        "EXPO_PUBLIC_MESSENGER_BASE_URL": "https://messenger.srs-dev.com",
+        "EXPO_PUBLIC_NETWORK_BASE_URL": "https://network.srs-dev.com",
+        "EXPO_PUBLIC_EVENTS_BASE_URL": "https://events.srs-dev.com",
+        "EXPO_PUBLIC_PROFILE_BASE_URL": "https://profiles.srs-dev.com",
+        "EXPO_PUBLIC_GAMIFICATION_BASE_URL": "https://gamification.srs-dev.com",
+        "EXPO_PUBLIC_NOTIFICATIONS_WEBSOCKET_URL": "wss://sub4pm5icb.execute-api.us-east-2.amazonaws.com/development/",
+        "EXPO_PUBLIC_TICKET_CHECKOUT_URL": "https://checkout.srs-dev.com",
+        "EXPO_PUBLIC_IS_SANDBOX_PAYMENTS": "true"
+      }
+    }
+  }
+}

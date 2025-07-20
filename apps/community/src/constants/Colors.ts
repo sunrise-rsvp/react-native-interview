@@ -1,0 +1,45 @@
+const tintColorLight = '#2f95dc';
+const tintColorDark = '#fff';
+
+export default {
+  light: {
+    text: '#000',
+    background: '#fff',
+    tint: tintColorLight,
+    tabIconDefault: '#ccc',
+    tabIconSelected: tintColorLight,
+  },
+  dark: {
+    text: '#ECE4F5',
+    black: '#000',
+    blackOpacity80: 'rgba(0, 0, 0, 0.8)',
+    green0: '#06AF21',
+    purple0: '#200A3E',
+    purple0opacity50: '#200A3E80',
+    purple0opacity85: '#200A3EDA',
+    purple1: '#DA20D1',
+    purple1opacity50: '#DA20D180',
+    purple1opacity80: '#DA20D1DA',
+    pink0: '#FF1493',
+    pink0opacity50: '#FF149380',
+    orange0: '#FF4500',
+    tint: tintColorDark,
+    opacity025: 'rgba(255, 255, 255, 0.025)',
+    opacity03: 'rgba(255, 255, 255, 0.03)',
+    opacity05: 'rgba(255, 255, 255, 0.05)',
+    opacity10: 'rgba(255, 255, 255, 0.1)',
+    opacity20: 'rgba(255, 255, 255, 0.2)',
+    opacity50: 'rgba(255, 255, 255, 0.5)',
+    tabIconDefault: '#fff',
+    yellow0: '#FFD700',
+    // background: '#1C0029' TODO: re-enable when we re-think styling,
+    inputGrey: '#ECE4F51a',
+    placeholderText: '#cac4d0',
+    disabled: {
+      iconTint: '#83788380',
+      purple1opacity50: '#dbdbdb33',
+      yellow0: '#DBDBDB',
+      purple0: '#DBDBDB0f',
+    },
+  },
+};

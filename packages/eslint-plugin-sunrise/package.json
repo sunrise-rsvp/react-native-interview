@@ -1,0 +1,21 @@
+{
+  "name": "eslint-plugin-sunrise",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write src",
+    "lint": "tsc && eslint . --ext .ts,.tsx",
+    "lint:fix": "tsc && eslint . --ext .ts,.tsx --fix"
+  },
+  "devDependencies": {
+    "@typescript-eslint/utils": "*"
+  }
+}

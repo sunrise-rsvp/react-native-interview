@@ -1,0 +1,4 @@
+export const TicketTypes = {
+  GENERAL_ADMISSION: 'GENERAL ADMISSION',
+  FEATURED_SPEAKER: 'FEATURED SPEAKER',
+} as const;
