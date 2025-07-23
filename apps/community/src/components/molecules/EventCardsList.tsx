@@ -4,7 +4,6 @@ import type { ViewStyle } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 
 import InPersonEventCard from '@molecules/InPersonEventCard';
-import RoomCard from '@molecules/RoomCard';
 import { ExperienceType, type Event } from '@sunrise-ui/api/events';
 import type { BaseCardsListProps } from '@sunrise-ui/primitives';
 import {
@@ -41,20 +40,14 @@ export default function EventCardsList({
             <MobileCardWrapper>
               <InPersonEventCard
                 style={cardStyle}
-                eventId={event.id!}
                 title={event.name}
                 description={event.description}
-                locationId={event.event_location_id}
                 startDate={DateTime.fromISO(event.start_date!)}
               />
             </MobileCardWrapper>
           );
         } else {
-          return (
-            <MobileCardWrapper>
-              <RoomCard style={cardStyle} eventId={event.id!} />
-            </MobileCardWrapper>
-          );
+          return null;
         }
       }}
       keyExtractor={(item) => item.id!}

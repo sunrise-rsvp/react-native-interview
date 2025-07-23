@@ -6,7 +6,6 @@ export function useAuthenticateVisitor(onFailure?: () => void) {
   const {
     setHasAuthenticated,
     setCurrentUserId,
-    setAuthTokenInfo,
     setCurrentRefreshToken,
     isLoadingCredentials,
     currentRefreshToken,
@@ -16,7 +15,6 @@ export function useAuthenticateVisitor(onFailure?: () => void) {
   const refreshSession = async () => {
     const data = await refreshToken();
     setCurrentUserId(data.user_id);
-    setAuthTokenInfo(data.access_token);
     setCurrentRefreshToken(data.refresh_token);
     setHasAuthenticated(true);
   };

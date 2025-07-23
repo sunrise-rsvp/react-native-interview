@@ -6,7 +6,6 @@ import { ArrowLeft01Icon } from '@hugeicons/core-free-icons';
 import type { IconSvgElement } from '@hugeicons/react-native';
 import { type NavigationProp } from '@react-navigation/core';
 import { IconButton } from '@sunrise-ui/primitives';
-import { defaultBack } from '@utils/navigation';
 import { useGlobalSearchParams, useNavigation } from 'expo-router';
 
 type Props<T = NavigationProp<ReactNavigation.RootParamList>> = {
@@ -20,7 +19,7 @@ type Props<T = NavigationProp<ReactNavigation.RootParamList>> = {
 
 export default function HeaderButton<T>({
   icon = ArrowLeft01Icon,
-  onPress = defaultBack(),
+  onPress,
   loading,
 }: Props<T>) {
   const { isMobile } = useMediaQueries();
@@ -32,7 +31,7 @@ export default function HeaderButton<T>({
       <IconButton
         icon={icon}
         onPress={() => {
-          void onPress(params, navigation);
+          void onPress?.(params, navigation);
         }}
         size={isMobile ? 'small' : 'medium'}
         loading={loading}

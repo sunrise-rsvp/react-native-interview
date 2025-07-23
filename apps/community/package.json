@@ -4,18 +4,10 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "android": "expo run:android",
-    "build:ios:dev": "eas build --local --platform ios --profile development --clear-cache",
     "format": "prettier --write src",
-    "ios": "expo run:ios",
     "lint": "tsc && eslint . --ext .ts,.tsx",
     "lint:fix": "tsc && eslint . --ext .ts,.tsx --fix",
-    "prebuild": "expo prebuild",
-    "run:android": "expo run:android",
-    "run:ios": "expo run:ios",
-    "run:web": "expo start --clear --web",
-    "start": "expo start --clear",
-    "start:localDocker": "NODE_ENV=localDocker expo start --clear"
+    "run:web": "expo start --clear --web"
   },
   "dependencies": {
     "@config-plugins/react-native-webrtc": "*",

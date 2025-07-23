@@ -20,8 +20,6 @@
     ],
     "complexity": "off",
     "@typescript-eslint/consistent-type-imports": "error",
-    "sunrise/no-nested-package-imports": "error",
-    "sunrise/no-missing-dependencies": "error",
     "no-restricted-imports": [
       "error",
       {
@@ -36,7 +34,6 @@
     "**/node_modules/**"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "sunrise"],
   "settings": {
     "react": {
       "version": "detect"

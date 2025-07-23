@@ -1,8 +1,5 @@
 module.exports = function (api) {
-  const isNative = api.caller(
-    (caller) =>
-      caller && (caller.platform === 'ios' || caller.platform === 'android'),
-  );
+  api.cache(true);
   const config = {
     presets: ['babel-preset-expo'],
     plugins: [
@@ -31,11 +28,6 @@ module.exports = function (api) {
       'add-react-displayname',
     ],
   };
-  if (isNative) {
-    config.plugins.push(
-      '../../node_modules/@heap/react-native-heap/instrumentor/src/index.js',
-    );
-  }
 
   return config;
 };

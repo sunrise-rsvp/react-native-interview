@@ -3,7 +3,6 @@ import { Redirect, router } from 'expo-router';
 import React, { type PropsWithChildren } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useAuthenticateVisitor } from '../../hooks/useAuthenticateVisitor';
-import { AcceptTermsView } from './AcceptTermsView';
 
 export function AuthGuard({ children }: PropsWithChildren) {
   useAuthenticateVisitor(() => {
@@ -12,7 +11,6 @@ export function AuthGuard({ children }: PropsWithChildren) {
   const {
     currentRefreshToken,
     hasAuthenticated,
-    hasAcceptedTerms,
     isLoadingCredentials,
   } = useUserAuth();
 
@@ -21,8 +19,6 @@ export function AuthGuard({ children }: PropsWithChildren) {
   if (!currentRefreshToken) return <Redirect href="/login" />;
 
   if (!hasAuthenticated) return <View style={styles.loadingScreen} />;
-
-  if (!hasAcceptedTerms) return <AcceptTermsView />;
 
   return children;
 }

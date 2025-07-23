@@ -1,14 +1,12 @@
 import EventCardsList from '@molecules/EventCardsList';
-import { useGetBulkRooms } from '@queries/rooms';
 import { useGetUserTicketsTemporal } from '@queries/tickets';
-import { QueryKeys, useGetBulkEvents } from '@sunrise-ui/api-client';
-import { ExperienceType, TemporalRelation } from '@sunrise-ui/api/events';
+import { useGetBulkEvents } from '@sunrise-ui/api-client';
+import { TemporalRelation } from '@sunrise-ui/api/events';
 import {
   useDynamicStyles,
   useUserAuth,
   type WithResponsive,
 } from '@sunrise-ui/primitives';
-import { useQueryClient } from '@tanstack/react-query';
 import React, { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -16,13 +14,10 @@ type Props = {
   userId: string;
 };
 
-const { roomsKey, byEventId } = QueryKeys.rooms;
-
 export default function UserEventsCardList({ userId }: Props) {
   const { currentUserId } = useUserAuth();
   const isSelf = currentUserId === userId;
   const styles = useDynamicStyles(createStyles);
-  const queryClient = useQueryClient();
   const [isRefreshing, setIsRefreshing] = useState(false);
   const {
     data: tickets,
@@ -36,30 +31,12 @@ export default function UserEventsCardList({ userId }: Props) {
   const { data: events, isLoading: isLoadingEvents } =
     useGetBulkEvents(eventIds);
 
-  // Filter for virtual events and those without existing room query data
-  const virtualEventIds = useMemo(
-    () =>
-      events
-        ?.filter(
-          (event) =>
-            event.experience_type !== ExperienceType.InPerson &&
-            queryClient.getQueryData([roomsKey, byEventId, event.id!]) ===
-              undefined,
-        )
-        .map((event) => event.id!),
-    [events],
-  );
-
-  // Bulk get rooms so individual queries from the card have data instantly
-  const { isLoading: isLoadingRooms } = useGetBulkRooms(virtualEventIds);
-
   const isLoading =
-    !isRefreshing && (isTicketsLoading || isLoadingEvents || isLoadingRooms);
+    !isRefreshing && (isTicketsLoading || isLoadingEvents);
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
     try {
-      // TODO: come back to improve refetch here to include events and rooms
       await refetchTickets();
     } finally {
       setIsRefreshing(false);

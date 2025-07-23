@@ -5,7 +5,6 @@ import React, {
   useState,
   type PropsWithChildren,
 } from 'react';
-import { UserRole, parseAuthToken } from '../utils/auth';
 import { useSafeContext } from './useSafeContext';
 
 type UserAuthContextType = {
@@ -16,9 +15,6 @@ type UserAuthContextType = {
   currentRefreshToken?: string;
   setCurrentRefreshToken: (token: string) => void;
   isLoadingCredentials: boolean;
-  currentUserRole: UserRole;
-  hasAcceptedTerms: boolean;
-  setAuthTokenInfo: (authToken: string) => void;
 };
 
 // @ts-expect-error -- don't use default, instead console error if component not used in appropriate context
@@ -30,16 +26,6 @@ export const UserAuthProvider = ({ children }: PropsWithChildren) => {
   const [currentRefreshToken, setCurrentRefreshToken] = useState('');
   const [hasAuthenticated, setHasAuthenticated] = useState(false);
   const [isLoadingCredentials, setIsLoadingCredentials] = useState(true);
-  const [currentUserRole, setCurrentUserRole] = useState<UserRole>(
-    UserRole.BASIC,
-  );
-  const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
-
-  const setAuthTokenInfo = (authToken: string) => {
-    const { role, hasAcceptedTerms } = parseAuthToken(authToken);
-    setCurrentUserRole(role);
-    setHasAcceptedTerms(hasAcceptedTerms);
-  };
 
   useEffect(() => {
     const loadCredentialsFromStore = async () => {
@@ -50,8 +36,6 @@ export const UserAuthProvider = ({ children }: PropsWithChildren) => {
       if (storedUserId) setCurrentUserId(storedUserId);
 
       if (storedRefreshToken) setCurrentRefreshToken(storedRefreshToken);
-
-      if (storedAuthToken) setAuthTokenInfo(storedAuthToken);
 
       if (!storedAuthToken || !storedRefreshToken || !storedUserId)
         setHasAuthenticated(false);
@@ -72,9 +56,6 @@ export const UserAuthProvider = ({ children }: PropsWithChildren) => {
         setCurrentRefreshToken,
         setHasAuthenticated,
         isLoadingCredentials,
-        currentUserRole,
-        hasAcceptedTerms,
-        setAuthTokenInfo,
       }}
     >
       {children}

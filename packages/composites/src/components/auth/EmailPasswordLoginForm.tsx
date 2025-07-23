@@ -44,7 +44,6 @@ export function EmailPasswordLoginForm({ redirectUrlOnLogin }: Props) {
     setCurrentUserId,
     setCurrentRefreshToken,
     setHasAuthenticated,
-    setAuthTokenInfo,
   } = useUserAuth();
 
   const onSubmit = async (data: LoginFormValues) => {
@@ -52,7 +51,6 @@ export function EmailPasswordLoginForm({ redirectUrlOnLogin }: Props) {
       const response = await logIn(data);
       setCurrentUserId(response.user_id);
       setCurrentRefreshToken(response.refresh_token);
-      setAuthTokenInfo(response.access_token);
       setHasAuthenticated(true);
       router.navigate(redirectUrlOnLogin);
     } catch {

@@ -3,7 +3,6 @@ import { EmailPasswordLoginForm } from '@sunrise-ui/composites';
 import {
   PageHeader,
   useDynamicStyles,
-  useNavigateWithRedirectUrl,
   type WithResponsive,
 } from '@sunrise-ui/primitives';
 import React from 'react';
@@ -11,7 +10,6 @@ import { StyleSheet, View } from 'react-native';
 
 export default function LoginLongScreen() {
   const styles = useDynamicStyles(createStyles);
-  const { redirectUrl } = useNavigateWithRedirectUrl();
 
   return (
     <View style={styles.container}>
@@ -20,7 +18,7 @@ export default function LoginLongScreen() {
         subheader="You're one step closer to your next big thing"
       />
       <EmailPasswordLoginForm
-        redirectUrlOnLogin={redirectUrl ? redirectUrl : '/events'}
+        redirectUrlOnLogin={'/profile'}
       />
     </View>
   );

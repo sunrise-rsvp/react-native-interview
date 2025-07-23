@@ -1,24 +1,56 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "esnext", // for dynamic imports (not at top of module)
+    "module": "esnext",
     "baseUrl": "src",
     "strict": true,
     "paths": {
-      "@app/*": ["app/*"],
-      "@assets/*": ["assets/*"],
-      "@constants/*": ["constants/*"],
-      "@hooks/*": ["hooks/*"],
-      "@contexts/*": ["contexts/*"],
-      "@queries/*": ["queries/*"],
-      "@utils/*": ["utils/*"],
-      "@atoms/*": ["components/atoms/*"],
-      "@molecules/*": ["components/molecules/*"],
-      "@organisms/*": ["components/organisms/*"],
-      "@templates/*": ["components/templates/*"],
-      "@hoc/*": ["hoc/*"]
+      "@app/*": [
+        "app/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ],
+      "@constants/*": [
+        "constants/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@contexts/*": [
+        "contexts/*"
+      ],
+      "@queries/*": [
+        "queries/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@atoms/*": [
+        "components/atoms/*"
+      ],
+      "@molecules/*": [
+        "components/molecules/*"
+      ],
+      "@organisms/*": [
+        "components/organisms/*"
+      ],
+      "@templates/*": [
+        "components/templates/*"
+      ],
+      "@hoc/*": [
+        "hoc/*"
+      ]
     },
-    "moduleSuffixes": [".ios", ".android", ".native", ".web", ""]
+    "moduleSuffixes": [
+      ".ios",
+      ".android",
+      ".native",
+      ".web",
+      ""
+    ]
   },
-  "include": [".expo/types/**/*.ts", "expo-env.d.ts", "src"]
+  "include": [
+    "src"
+  ]
 }

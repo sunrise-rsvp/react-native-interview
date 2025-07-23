@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from '../constants/Colors';
-import { useBanner } from '../contexts/useBanner';
 import { useDynamicStyles } from '../hooks/useDynamicStyles';
 import { useMediaQueries, type WithResponsive } from '../utils/responsivity';
 import { HeaderTitle } from './HeaderTitle';
@@ -32,8 +31,7 @@ export function Header({
   const { isMobile } = useMediaQueries();
   const headerHeight = isMobile ? 54 : 76;
   const headerPadding = isMobile ? 12 : 16;
-  const { banner } = useBanner();
-  const totalHeight = headerHeight + (banner ? 0 : insets.top);
+  const totalHeight = headerHeight + insets.top;
   const styles = useDynamicStyles(createStyles, {
     headerHeight,
     totalHeight,

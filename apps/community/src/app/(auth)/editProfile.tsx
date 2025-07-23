@@ -9,12 +9,12 @@ import {
   useGetProfile,
   useUpdateProfile,
   useUpdateProfileLinks,
-  useUpdateProfilePhoto,
+  useUpdateProfilePhoto
 } from '@queries/profiles';
 import {
   type GenderPronouns,
   type ProfileLinks,
-  type UpdateProfileLinksInput,
+  type UpdateProfileLinksInput
 } from '@sunrise-ui/api/profile';
 import {
   Button,
@@ -27,9 +27,8 @@ import {
   useMediaQueries,
   useSetHeader,
   useUserAuth,
-  type WithResponsive,
+  type WithResponsive
 } from '@sunrise-ui/primitives';
-import { defaultBack } from '@utils/navigation';
 import { type ImagePickerAsset } from 'expo-image-picker';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -37,9 +36,10 @@ import {
   ScrollView,
   StyleSheet,
   View,
-  useWindowDimensions,
+  useWindowDimensions
 } from 'react-native';
 import { object, string, type InferType } from 'yup';
+import { router } from 'expo-router';
 
 export type AdditionalProfileInfo = {
   siteLinks?: ProfileLinks;
@@ -58,7 +58,7 @@ const siteOptions: SiteOption[] = [
   { label: 'LinkedIn', value: 'linkedin' },
   { label: 'GitHub', value: 'github' },
   { label: 'X', value: 'x' },
-  { label: 'Website', value: 'website' },
+  { label: 'Website', value: 'website' }
 ];
 
 const schema = object({
@@ -77,29 +77,29 @@ const schema = object({
     linkedin: string()
       .matches(
         /^https:\/\/(www\.)?linkedin\.com\/in\/[\w-]+$/,
-        'Must be a valid LinkedIn URL like https://www.linkedin.com/in/communiful',
+        'Must be a valid LinkedIn URL like https://www.linkedin.com/in/communiful'
       )
       .notRequired()
       .nullable(),
     github: string()
       .matches(
         /^https:\/\/(www\.)?github\.com\/[\w-]+$/,
-        'Must be a valid GitHub URL like https://github.com/communiful',
+        'Must be a valid GitHub URL like https://github.com/communiful'
       )
       .notRequired()
       .nullable(),
     x: string()
       .matches(
         /^https:\/\/(www\.)?x\.com\/[\w-]+$/,
-        'Must be a valid X URL like https://x.com/communiful',
+        'Must be a valid X URL like https://x.com/communiful'
       )
       .notRequired()
       .nullable(),
     website: string()
       .url('Must be a valid URL like https://www.joincommuniful.com')
       .notRequired()
-      .nullable(),
-  }).notRequired(),
+      .nullable()
+  }).notRequired()
 });
 
 type ProfileFormValues = InferType<typeof schema> & AdditionalProfileInfo;
@@ -122,7 +122,7 @@ export default function EditProfileScreen() {
     pronouns: profile?.pronouns ?? '',
     headline: profile?.headline ?? '',
     siteLinks: profile?.links,
-    profilePhoto: {},
+    profilePhoto: {}
   };
 
   const {
@@ -132,15 +132,15 @@ export default function EditProfileScreen() {
     trigger,
     control,
     formState: { errors, isValid, isSubmitting },
-    reset,
+    reset
   } = useForm<ProfileFormValues, unknown, ProfileFormValues>({
     defaultValues,
     // @ts-expect-error - type doesn't like the nullable possibility
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   });
   const [editingSite, setEditingSite] = useState<ProfileSite>();
 
-  const handleBack = defaultBack(`/to/${currentUserId}`);
+  const handleBack = () => router.navigate('/profile');
 
   useSetHeader({
     header: () => (
@@ -156,7 +156,7 @@ export default function EditProfileScreen() {
           />
         }
       />
-    ),
+    )
   });
 
   useEffect(() => {
@@ -175,7 +175,7 @@ export default function EditProfileScreen() {
           linkedin: data.siteLinks?.linkedin,
           github: data.siteLinks?.github,
           x: data.siteLinks?.x,
-          website: data.siteLinks?.website,
+          website: data.siteLinks?.website
         });
       }
 
@@ -186,19 +186,19 @@ export default function EditProfileScreen() {
           first_name: data.firstName,
           last_name: data.lastName,
           pronouns: (data.pronouns as GenderPronouns) || undefined,
-          headline: data.headline,
+          headline: data.headline
         },
         {
           onSuccess() {
             handleBack();
-          },
-        },
+          }
+        }
       );
     }
   };
 
   const availableSiteOptions = siteOptions.filter(
-    (so) => !getValues(`siteLinks.${so.value}`) || so.value === editingSite,
+    (so) => !getValues(`siteLinks.${so.value}`) || so.value === editingSite
   );
   const hasAvailableSiteOptions = editingSite
     ? availableSiteOptions.length > 1
@@ -253,10 +253,12 @@ export default function EditProfileScreen() {
                   options={[
                     { label: 'he/him', value: 'he/him' },
                     { label: 'she/her', value: 'she/her' },
-                    { label: 'they/them', value: 'they/them' },
+                    { label: 'they/them', value: 'they/them' }
                   ]}
                   value={value}
-                  onChange={onChange}
+                  onChange={(value?: string) => {
+                    onChange(value ?? '');
+                  }}
                 />
               )}
               name="pronouns"
@@ -336,10 +338,10 @@ export default function EditProfileScreen() {
 }
 
 const createStyles = ({
-  isMobile,
-  isTablet,
-  screenWidth,
-}: WithResponsive<{ screenWidth: number }>) =>
+                        isMobile,
+                        isTablet,
+                        screenWidth
+                      }: WithResponsive<{ screenWidth: number }>) =>
   StyleSheet.create({
     container: {
       backgroundColor: Colors.dark.purple0,
@@ -347,34 +349,34 @@ const createStyles = ({
       paddingTop: 0,
       width: screenWidth,
       alignItems: 'center',
-      gap: 20,
+      gap: 20
     },
     buttons: {
       display: 'flex',
       flexDirection: 'column',
-      gap: 20,
+      gap: 20
     },
     inputSection: {
-      width: isMobile ? '100%' : isTablet ? '70%' : '50%',
+      width: isMobile ? '100%' : isTablet ? '70%' : '50%'
     },
     siteLinkSection: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      gap: 27,
+      gap: 27
     },
     linkInputSection: {
       display: 'flex',
       flexDirection: 'column',
-      width: '100%',
+      width: '100%'
     },
     dropdown: {
-      marginBottom: 27,
+      marginBottom: 27
     },
     siteLinkButtons: {
       justifyContent: 'center',
       display: 'flex',
       flexDirection: 'row',
-      gap: 12,
-    },
+      gap: 12
+    }
   });

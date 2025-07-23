@@ -37,12 +37,6 @@ Install node modules:
 ### Web
 Run `pnpm run:web`
 
-### Mobile Simulator
-To run a development build (preferred over expo go):
-1. Run `pnpm prebuild` (alias for `expo prebuild`)
-2. (optional) Run `cd ios && pod install` or `cd android ./gradlew clean`
-3. Run `pnpm [ios|android]` (alias for `expo run:[ios|android]`)
-
 ---
 
 ## Directions
